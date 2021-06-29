@@ -32,21 +32,21 @@ public class TitleSteps {
     public void the_search_word_is_entered(String string) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));
-        driver.findElement(By.name("q")).sendKeys("test automation");
+        driver.findElement(By.name("q")).sendKeys(string);
     }
     @And("the enter button is clicked")
     public void the_enter_button_is_clicked() {
         driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
     }
-    @And("the {string} - th search result link is clicked")
-    public void the_th_search_result_link_is_clicked(String string) {
+    @And("the 7-th search result link is clicked")
+    public void the_th_search_result_link_is_clicked() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("g")));
         driver.findElements(By.className("g")).get(new Random().nextInt(10)+1).click();
     }
     @Then("the {string} word is present in the title")
     public void the_word_is_present_in_the_title(String string) throws InterruptedException {
-        driver.getTitle().contains("Automation");
+        driver.getTitle().contains(string);
         driver.close();
         driver.quit();
     }
